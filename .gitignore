@@ -1,2 +1,4 @@
 /python/APIkey.py
 /.idea/
+python/.DS_Store
+python/__pycache__/APIkey.cpython-39.pyc

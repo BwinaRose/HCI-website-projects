@@ -32,17 +32,24 @@ body {
     padding: 50px 20px;
     float: right;
     color: #86b7fe;
+    color: rgba(130, 180, 253, 0);
     text-shadow: 2px 2px 4px black;
 }
 
 .main {
-    padding: 1px;
+    padding: 4px;
     margin-top: 30px;
     height: auto;
 }
 
+.main2 {
+    padding: 4px;
+    margin-top: 50px;
+    height: auto;
+}
+
 .topnav {
-    background-color: rgb(20, 21, 43);
+    background-color: rgba(20, 21, 43, 0.46);
     overflow: hidden;
     position: fixed;
     left: 0;
@@ -170,7 +177,7 @@ a {
 }
 
 .social-links{
-    background-color: rgba(5, 3, 43, 0.6);
+    background-color: rgb(155, 138, 189);
     list-style: none;
     display: flex;
     justify-content: center;
@@ -202,10 +209,11 @@ a {
         stroke: #FF5733;
     }
     100% {
-        stroke-dashoffset:0;
+        stroke-dashoffset: 0;
         stroke: #FFC300;
     }
 }
+
 
 
 

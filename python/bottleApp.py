@@ -1,4 +1,3 @@
-import APIkey as APIkey
 from bottle import route, run, view, static_file, get, post, request, template
 from datetime import datetime
 import pytz
@@ -211,7 +210,7 @@ def weatherForm():
 @view("pages/weatherOut")
 def weatherOut():
     city = request.forms.get('city')
-    state = request.forms.get('state')
+    state = request.params.get('state')
     country = "us"
     APIkey = api.APIkey
     call = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={APIkey}&units=imperial"
@@ -225,9 +224,7 @@ def weatherOut():
                 city=city,
                 state=state,
                 description=jsonWeather[0]["description"],
-                iconCall=f"http://openweathermap.org/img/wn/{icon}@2x.png")
-
-
+                iconCall=f"https://openweathermap.org/img/wn/{icon}@2x.png")
 # sabrina krueger
 
 
@@ -244,6 +241,11 @@ def send_assets(filename):
 @route('/static/css/style.css')
 def send_css():
     return static_file("style.css", "static/css")
+
+
+@route('/static/css/mapstyle.css')
+def send_css2():
+    return static_file("mapstyle.css", "static/css")
 
 
 run(host='localhost', port=8085, debug=True, reloader=True)

@@ -1,0 +1,124 @@
+* {
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(#0d0f25, rgba(70, 28, 147, 0.46));
+    margin:0;
+    font-size:100%;
+    color: #86b7fe;
+}
+
+.demo-wrap {
+    overflow: hidden;
+    position: relative;
+    height: 350px;
+}
+
+.demo-bg {
+    display: block;
+    opacity: 0.55;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+
+}
+
+.demo-content {
+    position: relative;
+    padding: 50px 20px;
+    float: right;
+    color: #86b7fe;
+    color: rgba(130, 180, 253, 0);
+    text-shadow: 2px 2px 4px black;
+}
+
+.main {
+    padding: 4px;
+    margin-top: 30px;
+    height: auto;
+}
+
+.main2 {
+    padding: 4px;
+    margin-top: 50px;
+    height: auto;
+}
+
+.topnav {
+    background-color: rgba(20, 21, 43, 0.25);
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.topnav a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+
+.topnav a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.bodyText{
+    padding: 5px 10px;
+    color: rgb(255, 255, 255);
+}
+
+
+.social-links{
+    list-style: none;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+path {
+    stroke: white;
+    transition: fill .4s ease;
+}
+
+path.active {
+    fill: #ffa2e1 !important;
+}
+
+path:hover {
+    fill: #ffa2e1 !important;
+}
+
+#us-map {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#details-box {
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 24px;
+    position: fixed;
+    color: white;
+    font-family: "Poppins";
+    background-color: black;
+    width: fit-content;
+    transform: translateX(-50%);
+    transition: opacity .4s ease;
+    z-index: 1;
+}
