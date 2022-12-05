@@ -210,21 +210,156 @@ def weatherForm():
 @view("pages/weatherOut")
 def weatherOut():
     city = request.forms.get('city')
-    state = request.params.get('state')
+    state = request.forms.get('state')
     country = "us"
     APIkey = api.APIkey
-    call = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={APIkey}&units=imperial"
-    response = requests.get(call)
-    jsonData = response.json()
+
+    currentcall = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid" \
+              f"={APIkey}&units=imperial"
+    currentresponse = requests.get(currentcall)
+    jsonData = currentresponse.json()
     jsonWeather = jsonData["weather"]
     data = jsonData["main"]
+    currentTemp=round(data["temp"])
+    max=round(data["temp_max"])
+    min=round(data["temp_min"])
+    mainWeather = jsonWeather[0]["main"]
     icon = jsonWeather[0]["icon"]
 
-    return dict(currentTemp=data["temp"],
+    coordCall = f"http://api.openweathermap.org/geo/1.0/direct?q={city},{state},{country}&appid={APIkey}"
+    coordResponse = requests.get(coordCall)
+    coordData = coordResponse.json()
+    data2 =coordData[0]
+    lat = data2["lat"]
+    lon = data2["lon"]
+    # print(coordData)
+
+    mainCall = f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=minutely,alerts," \
+               f"hourly&appid" \
+               f"={APIkey}&units=imperial"
+    mainresponse = requests.get(mainCall)
+    maindata = mainresponse.json()
+    dailyData = maindata["daily"]
+
+    day0 = dailyData[0]
+    current_utc = maindata["current"]["dt"]
+    sunrise_utc = day0["sunrise"]
+    sunset_utc = day0["sunset"]
+
+    # day0 "TODAY"
+    day1 = dailyData[1]
+    day2 = dailyData[2]
+    day3 = dailyData[3]
+    day4 = dailyData[4]
+    day5 = dailyData[5]
+    # dt4 = datetime.fromtimestamp(day4["dt"])
+    # get day of the week (MTWRFSS)
+
+    # if dt > (sunrise+3600) && dt < (sunset-3600)
+    #  == day
+    # elif dt < (sunrise+3600) && st > (sunset-3600)
+    #  == night
+    # else
+    #  == sunrise/sunset
+
+    if (mainWeather == "Thunderstorm"):
+        print(mainWeather)
+        if (current_utc > sunrise_utc+3600 and current_utc < sunset_utc-3600):
+            print("day")
+            bgimg="../static/assets/weatherbg/thunder-day.gif"
+        elif (current_utc < sunrise_utc+3600 and current_utc > sunset_utc-3600):
+            print("night")
+            bgimg="../static/assets/weatherbg/thunder-night.gif"
+        elif ((current_utc == sunrise_utc or current_utc <= sunrise_utc+3600) or (current_utc == sunset_utc or
+                                                                                  current_utc >= sunrise_utc-3600)):
+            print("sunset/sunrise")
+            bgimg="../static/assets/weatherbg/thunder-sun.gif"
+    elif (mainWeather == "Drizzle"):
+        print(mainWeather)
+        if (current_utc > sunrise_utc+3600 and current_utc < sunset_utc-3600):
+            print("day")
+            bgimg="../static/assets/weatherbg/drizzle-day.gif"
+        elif (current_utc < sunrise_utc+3600 and current_utc > sunset_utc-3600):
+            print("night")
+            bgimg="../static/assets/weatherbg/drizzle-night.gif"
+        elif ((current_utc == sunrise_utc or current_utc <= sunrise_utc+3600) or (current_utc == sunset_utc or
+                                                                                  current_utc >= sunrise_utc-3600)):
+            print("sunset/sunrise")
+            bgimg="../static/assets/weatherbg/drizzle-sun.gif"
+    elif (mainWeather == "Rain"):
+        print(mainWeather)
+        if (current_utc > sunrise_utc+3600 and current_utc < sunset_utc-3600):
+            print("day")
+            bgimg="../static/assets/weatherbg/rain-day.gif"
+        elif (current_utc < sunrise_utc+3600 and current_utc > sunset_utc-3600):
+            print("night")
+            bgimg="../static/assets/weatherbg/rain-night.gif"
+        elif ((current_utc == sunrise_utc or current_utc <= sunrise_utc+3600) or (current_utc == sunset_utc or
+                                                                                  current_utc >= sunrise_utc-3600)):
+            print("sunset/sunrise")
+            bgimg="../static/assets/weatherbg/rain-sun.gif"
+    elif (mainWeather == "Snow"):
+        print(mainWeather)
+        if (current_utc > sunrise_utc+3600 and current_utc < sunset_utc-3600):
+            print("day")
+            bgimg="../static/assets/weatherbg/snow-day.gif"
+        elif (current_utc < sunrise_utc+3600 and current_utc > sunset_utc-3600):
+            print("night")
+            bgimg="../static/assets/weatherbg/snow-night.gif"
+        elif ((current_utc == sunrise_utc or current_utc <= sunrise_utc+3600) or (current_utc == sunset_utc or
+                                                                                  current_utc >= sunrise_utc-3600)):
+            print("sunset/sunrise")
+            bgimg="../static/assets/weatherbg/snow-sun.gif"
+    elif (mainWeather == "Mist" or mainWeather == "Smoke" or mainWeather == "Haze" or mainWeather == "Dust" or
+          mainWeather == "Fog" or mainWeather == "Sand" or mainWeather == "Ash" or mainWeather == "Squall" or
+          mainWeather == "Tornado"):
+        print(mainWeather)
+        if (current_utc > sunrise_utc+3600 and current_utc < sunset_utc-3600):
+            print("day")
+            bgimg="../static/assets/weatherbg/mist-day.gif"
+        elif (current_utc < sunrise_utc+3600 and current_utc > sunset_utc-3600):
+            print("night")
+            bgimg="../static/assets/weatherbg/mist-night.gif"
+        elif ((current_utc == sunrise_utc or current_utc <= sunrise_utc+3600) or (current_utc == sunset_utc or
+                                                                                  current_utc >= sunrise_utc-3600)):
+            print("sunset/sunrise")
+            bgimg="../static/assets/weatherbg/mist-sun.gif"
+    elif (mainWeather == "Clear"):
+        print(mainWeather)
+        if (current_utc > sunrise_utc+3600 and current_utc < sunset_utc-3600):
+            print("day")
+            bgimg="../static/assets/weatherbg/clear-day.gif"
+        elif (current_utc < sunrise_utc+3600 and current_utc > sunset_utc-3600):
+            print("night")
+            bgimg="../static/assets/weatherbg/clear-night.gif"
+        elif ((current_utc == sunrise_utc or current_utc <= sunrise_utc+3600) or (current_utc == sunset_utc or
+                                                                                  current_utc >= sunrise_utc-3600)):
+            print("sunset/sunrise")
+            bgimg="../static/assets/weatherbg/clear-sun.gif"
+    elif (mainWeather == "Clouds"):
+        print(mainWeather)
+        if (current_utc > sunrise_utc+3600 and current_utc < sunset_utc-3600):
+            print("day")
+            bgimg="../static/assets/weatherbg/cloud-day.gif"
+        elif (current_utc < sunrise_utc+3600 and current_utc > sunset_utc-3600):
+            print("night")
+            bgimg="../static/assets/weatherbg/cloud-night.gif"
+        elif ((current_utc == sunrise_utc or current_utc <= sunrise_utc+3600) or (current_utc == sunset_utc or
+                                                                                  current_utc >= sunrise_utc-3600)):
+            print("sunset/sunrise")
+            bgimg="../static/assets/weatherbg/cloud-sun.gif"
+    else:
+        print("Error")
+
+    return dict(currentTemp=currentTemp,
+                max=max,
+                min=min,
                 city=city,
                 state=state,
                 description=jsonWeather[0]["description"],
-                iconCall=f"https://openweathermap.org/img/wn/{icon}@2x.png")
+                iconCall=f"https://openweathermap.org/img/wn/{icon}@2x.png",
+                mainWeather=mainWeather,
+                bgimg=bgimg)
 # sabrina krueger
 
 
@@ -236,6 +371,11 @@ def send_pages(filename):
 @route('/static/assets/<filename>')
 def send_assets(filename):
     return static_file(f'{filename}', root='static/assets')
+
+
+@route('/static/assets/weatherbg/<filename>')
+def send_weatherbg(filename):
+    return static_file(f'{filename}', root='static/assets/weatherbg')
 
 
 @route('/static/css/style.css')

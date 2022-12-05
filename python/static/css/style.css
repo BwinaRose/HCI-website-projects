@@ -4,10 +4,16 @@
 }
 
 body {
-    background-image: linear-gradient(#0d0f25, rgba(70, 28, 147, 0.46));
+    background-image: linear-gradient(#211e36, rgba(70, 28, 147, 0.46));
     margin:0;
+    background-attachment: fixed;
     font-size:100%;
     color: #86b7fe;
+}
+
+.weatherMark {
+    background-color: rgb(89, 56, 154);
+    color: #c5c5c5;
 }
 
 .demo-wrap {
@@ -44,8 +50,16 @@ body {
 
 .main2 {
     padding: 4px;
+    padding-bottom: 15px;
     margin-top: 50px;
     height: auto;
+}
+
+.weatherDisplay {
+    color: #c5c5c5;
+    background-color: rgba(187, 166, 229, 0.46);
+    align-content: center;
+    text-align: center;
 }
 
 .topnav {
@@ -91,7 +105,6 @@ body {
 
 .heart-ul {
     margin-left: 50px;
-
 }
 
 .heart {
@@ -123,6 +136,11 @@ body {
 .proj-links{
     list-style: none;
     padding: 25px 16px;
+}
+
+.back-button {
+    position: absolute;
+    top: 35px;
 }
 
 .button {
@@ -177,7 +195,7 @@ a {
 }
 
 .social-links{
-    background-color: rgb(155, 138, 189);
+    background-color: rgba(152, 135, 185, 0);
     list-style: none;
     display: flex;
     justify-content: center;

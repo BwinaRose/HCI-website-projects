@@ -8,7 +8,8 @@
 <body>
 
 <div class="main2">
-	<h1 style="display: flex;justify-content: center;font-family: Arial Black, fantasy;">Check the weather</h1>
+	<h1 style="display: flex;justify-content: center;font-family: Arial Black, fantasy;">United States
+	                                                                                     Weather</h1>
 	<form action="/weather2" method="post">
 		Enter a city name: <label>
 		<input name="city" type="text" />
@@ -490,7 +491,8 @@
 								if(elems !== null){
 									elems.classList.remove("active");
 								}
-								document.getElementById("state-input").value = e.target.dataset.name;
+								// document.getElementById("state-input").value = e.target.dataset.name;
+								document.getElementById("state-input").value = e.target.id;
 								document.getElementById("state-output").innerHTML = e.target.dataset.name;
 								document.getElementById(e.target.id).classList.toggle('active');
 								console.log(e.target.dataset.name);
