@@ -3,59 +3,66 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/style.css">
 </head>
-
 <body>
-<div style="background: url(../static/assets/space_art.jpeg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;">
-<div class="main">
-	<div class="demo-wrap">
-<!--		<img class="demo-bg"-->
-<!--				src="../static/assets/space_art.jpeg"-->
-<!--				alt="main bg img" style="opacity: 50%">-->
-		<div class="demo-content">
-			<br><h3>I am</h3>
-			<h1 class="colH1">Sabrina Rose</h1>
-			<h4><i>Information Technology Major</i></h4>
-			
-		</div>
-		<img class="ribbon" src="../static/assets/ribbon2.png"
-		     alt="hello-beans-ribbon">
-	</div>
-	<div class="bodyText">
-		<p style="font-size: 21px">My name is Sabrina and I enjoy many things like:</p>
-		<ul class="heart-ul">
-			<li class="heart"><i>Video Games</i></li>
-			<li class="heart"><i>Art</i></li>
-			<li class="heart"><i>Reading</i></li>
-			<li class="heart"><i>Music</i></li>
-			<li class="heart"><i>Programming</i></li>
-			<li class="heart"><i>And More!</i></li>
-		</ul>
-		<div>
-			<svg width="650" height="150" viewBox="0 0 550 350">
-				<path class="tri" fill-opacity="0.0" stroke="red" d="M 100 100 L 300 100 L 200 300 z"/>
-			</svg>
-		</div>
-		<p >Please navigate to the <b>projects</b> tab to see some projects I have done!</p>
-		<p>Or click the button below!</p>
-		
-		<div class="button" id="button-2">
-		<div id="slide"></div>
-		<a href="projects">Projects!</a>
-	</div>
-	</div>
-	
-	
 
+<div class="main" style="padding: 35px 150px">
+	<form action="/convertcurrency" method="post">
+		<div style="padding:15px 15px">
+			<p>Convert from</p>
+			<label >
+				<select name="currency_from" type="text">
+				<option value="AED">United Arab Emirates</option>
+				<option value="AFN">Afghanistan</option>
+				<option value="AUD">Australia</option>
+				<option value="BGN">Bulgaria</option>
+				<option value="BRL">Brazil</option>
+				<option value="CAD">Canada</option>
+				<option value="CNY">China</option>
+				<option value="CRC">Costa Rica</option>
+				<option value="EUR">European Union</option>
+				<option value="GBP">United Kingdom</option>
+				<option value="HKD">Hong Kong</option>
+				<option value="INR">India</option>
+				<option value="JPY">Japan</option>
+				<option value="KRW">South Korea</option>
+				<option value="MXN">Mexico</option>
+				<option value="RUB">Russia</option>
+				<option value="USD">United States</option>
+			</select>
+			</label>
+		</div>
+		<div style="padding:15px 15px">
+			<p>Convert to</p>
+			<label >
+				<select name="currency_to" type="text">
+					<option value="AED">United Arab Emirates</option>
+					<option value="AFN">Afghanistan</option>
+					<option value="AUD">Australia</option>
+					<option value="BGN">Bulgaria</option>
+					<option value="BRL">Brazil</option>
+					<option value="CAD">Canada</option>
+					<option value="CNY">China</option>
+					<option value="CRC">Costa Rica</option>
+					<option value="EUR">European Union</option>
+					<option value="GBP">United Kingdom</option>
+					<option value="HKD">Hong Kong</option>
+					<option value="INR">India</option>
+					<option value="JPY">Japan</option>
+					<option value="KRW">South Korea</option>
+					<option value="MXN">Mexico</option>
+					<option value="RUB">Russia</option>
+					<option value="USD">United States</option>
+				</select>
+			</label>
+		</div>
+		<input value="Convert!" type="submit" style="padding:15px 15px"/>
+	</form>
 </div>
 
 <div class="topnav">
-	<a class="active" href="/home">Home</a>
+	<a href="/home">Home</a>
 	<a href="/projects">Projects</a>
 </div>
 <div><ul class="social-links">

@@ -3,6 +3,7 @@ from datetime import datetime
 import pytz
 import requests
 from animePics import pics
+from flagGen import flagGen
 import random
 import APIkey as api
 
@@ -360,6 +361,69 @@ def weatherOut():
                 iconCall=f"https://openweathermap.org/img/wn/{icon}@2x.png",
                 mainWeather=mainWeather,
                 bgimg=bgimg)
+
+
+@route("/currency")
+@view("pages/currencyConvert")
+def main():
+    baseUrl = f"https://v6.exchangerate-api.com/v6/{api.CurrencyAPI}/pair/"
+    currencyFrom = 'USD'
+    currencyTo = 'JPY'
+    currencyTo2 = 'HKD'
+    url = f'{baseUrl}/{currencyFrom}/{currencyTo}'
+    url2 = f'{baseUrl}/{currencyFrom}/{currencyTo2}'
+    json = requests.get(url).json()
+    json2 = requests.get(url2).json()
+    # print(json) # <----- for debugging
+    rate = json['conversion_rate']
+    rate2 = json2['conversion_rate']
+
+    return dict(currencyFrom=currencyFrom,
+                currencyTo=currencyTo,
+                currencyTo2=currencyTo2,
+                rate=rate,
+                rate2=rate2)
+
+
+@route('/anime')
+@view("pages/animeRoller")
+def anime():
+    call = "https://animechan.vercel.app/api/random"
+    response = requests.get(call)
+    jsonData = response.json()
+    quoteAni = jsonData["anime"]
+    spokenBy = jsonData["character"]
+    quote = jsonData["quote"]
+    imageIndex = random.randint(0, len(pics) - 1)
+    image = pics[imageIndex]
+    return dict(image=image,
+                quoteAni=quoteAni,
+                spokenBy=spokenBy,
+                quote=quote)
+
+
+@get('/convertcurrency')
+@view("pages/currencyForm")
+def currencyForm():
+    currency_from = None
+    currency_to = None
+    return template("pages/currencyForm", currency_from=currency_from, currency_to=currency_to)
+
+
+@post('/convertcurrency')
+@view("pages/currencyOut")
+def currencyOut():
+    currency_from = request.forms.get('currency_from')
+    currency_to = request.forms.get('currency_to')
+    baseUrl = f"https://v6.exchangerate-api.com/v6/{api.CurrencyAPI}/pair/"
+    url = f'{baseUrl}/{currency_from}/{currency_to}'
+    json = requests.get(url).json()
+    flag_from = flagGen(currency_from)
+    flag_to = flagGen(currency_to)
+    rate = json['conversion_rate']
+    return dict(rate=rate,currency_from=currency_from, currency_to=currency_to,flag_from=flag_from,flag_to=flag_to)
+
+
 # sabrina krueger
 
 

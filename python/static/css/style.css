@@ -30,15 +30,24 @@ body {
     top: 0;
     width: 100%;
     height: auto;
+}
 
+.demo-bg2 {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
 }
 
 .demo-content {
+    border: 15px solid #ffa2e1;
+    background: rgba(40, 40, 59, 0.78);
     position: relative;
     padding: 50px 20px;
     float: right;
-    color: #86b7fe;
-    color: rgba(130, 180, 253, 0);
+    color: #a289ee;
     text-shadow: 2px 2px 4px black;
 }
 
@@ -57,7 +66,6 @@ body {
 
 .weatherDisplay {
     color: #c5c5c5;
-    background-color: rgba(187, 166, 229, 0.46);
     align-content: center;
     text-align: center;
 }
@@ -97,7 +105,8 @@ body {
 }
 
 .ribbon{
-    
+    position: absolute;
+    top: 40px;
     width: 750px;
     height: auto;
 
